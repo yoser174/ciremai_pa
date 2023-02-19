@@ -1,0 +1,238 @@
+{% extends "base/main_section_base.html" %} 
+{% load i18n static bootstrap3 %} {% load humanize %} 
+
+{% block meta_title %} 
+{% trans "Order detail" %} {{ orders.number }}
+{% endblock %} 
+
+{% block title %} 
+{% trans "Order detail" %}
+{% endblock %} 
+
+{% block extra_js %} 
+{% endblock %} 
+
+{% block breadcrumb_menu %}
+<li class="active"><a href="{% url 'orders_list' %}">{% trans "Orders" %}</a></li>
+<li class="active">{{ orders.number }}</li>
+{% endblock %} 
+
+{% block main_header %} 
+{% trans "Order Details" %} 
+{% endblock %} 
+
+{% block main_toolbar %}
+<div class="btn-group" role="group">{% include 'includes/orders_edit_toolbar.html' %}</div>
+{% endblock %} 
+
+{% block main_inner %}
+<div class="col-lg-4">
+	<div style="margin-top: -20px;">
+		<br>
+		<table>
+			<tr>
+				<td><small>{% trans 'Created' %}:&nbsp;</small></td>
+				<td><small>{{ orders.dateofcreation }}</small></td>
+			</tr>
+			<tr>
+				<td><small>{% trans 'Last modified' %}:&nbsp;</small></td>
+				<td><small>{{ orders.lastmodification }}</small></td>
+			</tr>
+		</table>
+	</div>
+	<h2>{{ orders.number }}</h2>
+	<table>
+		<tr>
+			<td>{% trans 'Origin' %}:&nbsp;</td>
+			<td><b>{{ orders.origin.name }}</b></td>
+		</tr>
+		<tr>
+			<td>{% trans 'Sample taken' %}:&nbsp;</td>
+			<td><b>{{ orders.sample_taken }}</b></td>
+		</tr>
+		<tr>
+			<td>{% trans 'Sample received' %}:&nbsp;</td>
+			<td><b>{{ orders.sample_received }}</b></td>
+		</tr>
+		<tr>
+			<td>{% trans 'Sender doctor' %}:&nbsp;</td>
+			<td><b>{{ orders.doctor }}</b></td>
+		</tr>
+		<tr>
+			<td>{% trans 'Med.Val doctor' %}:&nbsp;</td>
+			<td><b>{{ orders.get_med_doctor_display }}</b></td>
+		</tr>
+		<td>{% trans 'Created at' %}:&nbsp;</td>
+		<td><b>{{ orders.dateofcreation }}</b></td>
+		</tr>
+	</table>
+
+	<br> <br>
+</div>
+<div class="col-lg-4">
+	<fieldset>
+		<legend>{% trans 'Patient Data' %}</legend>
+		<table>
+			<tr>
+				<td>{% trans 'Patient ID' %}:&nbsp;</td>
+				<td><h4>
+						{{ orders.patient.patient_id }}
+						<h4></td>
+			</tr>
+			<tr>
+				<td>{% trans 'Name' %}:&nbsp;</td>
+				<td><h4><a href="{{ orders.patient.get_absolute_url }}">{{ orders.patient.name }}</a>
+						<h4></td>
+			</tr>
+			<tr>
+				<td>{% trans 'Gender' %}:&nbsp;</td>
+				<td><b>{{ orders.patient.gender }}</b></td>
+			</tr>
+			<tr>
+				<td>{% trans 'Date of Birth' %}:&nbsp;</td>
+				<td><b>{{ orders.patient.dob }}</b></td>
+			</tr>
+			<td>{% trans 'Address' %}:&nbsp;</td>
+			<td><b>{{ orders.patient.address }}</b></td>
+			</tr>
+		</table>
+	</fieldset>
+</div>
+
+{% if samples %}
+<div class="col-lg-4">
+	<fieldset>		
+		<table class="table">
+			<thead>
+			<tr>
+				<td>Sample No.</td>
+				<td>Specimen</td>
+			</tr>
+		</thead>
+		{% for sample in samples %}
+			<tr>
+				<td>{{ sample.sample_no }}</td>
+				<td>{{ sample.specimen.name }}</td>
+			</tr>
+		{% endfor %}
+		</table>
+	</fieldset>
+</div>
+{% endif %}
+
+<div class="col-md-12">
+
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#menu1">Pathology</a></li>
+  <li><a data-toggle="tab" href="#menu2">Cythology</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="menu1" class="tab-pane fade in active">
+  <br>
+  <table>
+  <tr>
+  	<td valign="top">Lab Number :</td><td>{{ pathology.lab_number | safe }}<br></td>
+  </tr>
+  <tr>
+  	<td valign="top">Keterangan  klinis :</td><td>{{ pathology.clinical_information | safe }}<br></td>
+  </tr>
+  <tr>
+  	<td valign="top">Makroskopis :</td><td>{{ pathology.macroscopic | safe }}<br></td>
+  </tr>
+  <tr>
+  	<td valign="top">Mikroskopis :</td><td>{{ pathology.microscopic | safe }}<br></td>
+  </tr>
+  <tr>
+  	<td valign="top">Kesimpulan :</td><td>{{ pathology.conclusion | safe }}<br></td>
+  </tr>
+  </table>
+  
+  </div>
+  
+  <div id="menu2" class="tab-pane">
+  <br>
+  <table>
+  <tr>
+  	<td valign="top">Lab Number :</td><td>{{ cythology.lab_number | safe }}<br></td>
+  </tr>
+  <tr>
+  	<td valign="top">Hp :</td><td>{{ cythology.hp | safe }}<br></td>
+  </tr>
+  <tr>
+  	<td valign="top">EDUKUASI SPESIMEN :</td><td>{{ cythology.specimen_adhesion | safe }}<br></td>
+  </tr>
+  <tr>
+  	<td valign="top">KATEGORI UMUM :</td><td>{{ cythology.general_category | safe }}<br></td>
+  </tr>
+  <tr>
+  	<td valign="top">PENJELASAN :</td><td>{{ cythology.explanation | safe }}<br></td>
+  </tr>
+  <tr>
+  	<td valign="top">ANJURAN :</td><td>{{ cythology.suggestions | safe }}<br></td>
+  </tr>
+  </table>
+  </div>
+  
+ </div>
+</div>
+
+</div>
+{% endblock %}
+
+{% block main_footer %}
+
+    
+<a href="pathology" class="btn btn-info" role="button">
+<span class="glyphicon glyphicon-pencil"></span>&nbsp;{% trans "Pathology result" %}</a>
+
+<a href="cythology" target="_blank" class="btn btn-info" role="button">
+<span class="glyphicon glyphicon-pencil"></span>&nbsp;{% trans "Cythology result" %}</a>
+
+
+<a href="pathology_print" target="_blank" class="btn btn-info" role="button">
+<span class="fa fa-print"></span>&nbsp;{% trans "Print Pathology Result" %}</a>
+
+<a href="cythology_print" target="_blank" class="btn btn-info" role="button">
+<span class="fa fa-print"></span>&nbsp;{% trans "Print Cythology Report" %}</a>
+
+<a href="pathology_print_en" target="_blank" class="btn btn-info" role="button">
+<span class="fa fa-print"></span>&nbsp;{% trans "Print Pathology Result English" %}</a>
+
+<a href="cythology_print_en" target="_blank" class="btn btn-info" role="button">
+<span class="fa fa-print"></span>&nbsp;{% trans "Print Cythology Report English" %}</a>
+
+	{% if MENU_BTN_PRINT_RECEIPT.num_value == 1 %}
+	    <a href="print/receipt" target="_blank" class="btn btn-info" role="button">
+	    <span class="glyphicon glyphicon-pencil"></span>&nbsp;{% trans "Print Receipt" %}</a>
+    {% endif %}
+    
+    {% if MENU_BTN_PRINT_RECEIPT.num_value == 1 %}
+	    <a href="print/bill" target="_blank" class="btn btn-info" role="button">
+	    <span class="fa fa-print"></span>&nbsp;{% trans "Print Bill" %}</a>
+    {% endif %}
+    
+    {% if MENU_BTN_PRINT_WORKLIST.num_value == 1 %}
+	    <a href="print/worklist" target="_blank" class="btn btn-info" role="button">
+	    <span class="fa fa-print"></span>&nbsp;{% trans "Print Worklist" %}</a>
+	{% endif %}
+	
+	{% if MENU_BTN_PRINT_BARCODE.num_value == 1 %}
+	<div class="btn-group dropup">
+	    <button type="button dropup" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+	      Print Label
+	      <span class="caret"></span>
+	    </button>
+	    <ul class="dropdown-menu">
+	    {% for lp in labelprinters %}
+	      <li><a href="label?printer={{ lp.id }}">{{ lp.name }}</a></li>
+	     {% endfor %}
+	    </ul>
+	</div>
+	{% endif %}
+							
+						
+    <!-- <a href="send/lis" class="btn btn-info" role="button">
+    <span class="fa fa-paper-plane-o"></span>&nbsp;{% trans "Send to LIS" %}</a> -->
+    
+{% endblock %}

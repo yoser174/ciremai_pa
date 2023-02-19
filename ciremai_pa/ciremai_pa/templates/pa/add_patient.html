@@ -1,0 +1,66 @@
+{% extends "base/form_view_base.html" %}
+{% load i18n crispy_forms_tags crispy_forms_field crispy_forms_filters bootstrap3 static %}
+
+{% block meta_title %}
+    {% trans "Patient" %}
+{% endblock %}
+
+{% block title %}
+    {% trans "Patient" %}
+{% endblock %}
+
+{% block breadcrumb_menu %}
+    <li class="active"><a href="{% url 'orders_list' %}">{% trans "Orders" %}</a></li>
+    <li class="active"><a href="{% url 'order_patient' %}">{% trans "Select patient" %}</a></li>
+    <li class="active">{% if patient %}{% trans "Edit patient" %}{% else %}{% trans "Create Patient" %}{% endif%}</li>
+{% endblock %}
+
+{% block main_header %}
+    {% if patient %}{% trans "Edit patient" %}{% else %}{% trans "Create patient" %}{% endif%}
+{% endblock %}
+
+{% block main_toolbar %}
+    <button type='submit' class='btn btn-primary'>
+        {% trans "Save" %}
+    </button>
+
+    <button type="button" class="btn btn-default"
+            onclick="window.location.assign('{% url 'order_patient' %}')">
+        {% trans "Cancel" %}
+    </button>
+{% endblock %}
+
+{% block extra_css %}
+{{ form.media.css }}
+<link rel="stylesheet" href="{% static "css/bootstrap-datepicker3.css" %}">
+{% endblock %}
+    
+{% block extra_js %}
+{{ form.media.js }}
+
+<script type="text/javascript" src="{% static "js/bootstrap-datepicker.js" %}"></script>
+{% endblock %}
+
+{% block main_inner %}
+{% bootstrap_form form layout='horizontal' %}
+
+<script type="text/javascript">
+    $(function () {
+        $('#id_dob').datepicker({
+    format: 'dd/mm/yyyy',
+    startDate: '-90y'
+});});
+</script>
+
+{% endblock %}
+
+{% block main_footer %}
+    <button type='submit' class='btn btn-primary'>
+        {% trans "Save" %}
+    </button>
+
+    <button type="button" class="btn btn-default"
+            onclick="window.location.assign('{% url 'order_patient' %}')">
+        {% trans "Cancel" %}
+    </button>
+{% endblock %}

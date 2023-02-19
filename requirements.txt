@@ -1,0 +1,17 @@
+django
+django-extensions
+django-ckeditor
+django-braces
+django-extra-views
+django_tables2
+django-avatar
+django-filter
+django-datetime-widget
+django-utils-six
+django-crispy-forms
+django-select2
+django-bootstrap3
+django-annoying
+django-simple-history
+django-widget-tweaks
+django-mptt
