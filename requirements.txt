@@ -15,3 +15,5 @@ django-annoying
 django-simple-history
 django-widget-tweaks
 django-mptt
+django-humanize
+requests

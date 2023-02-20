@@ -38,7 +38,5 @@ urlpatterns = [
     url(r'^patients/detail/(?P<pk>\d+)/$', views.ViewPatients.as_view(), name='patient_detail'),
     url(r'^patients/create/$', views.CreatePatient.as_view(), name='patient_create'),
     url(r'^patients/edit/(?P<pk>\d+)/$', views.EditPatient.as_view(), name='patient_edit'),
-    url(r'^patients/delete/(?P<pk>\d+)/$', views.DeletePatient.as_view(), name='patient_delete'),
-    
-    
+    url(r'^patients/delete/(?P<pk>\d+)/$', views.DeletePatient.as_view(), name='patient_delete'), 
     ]

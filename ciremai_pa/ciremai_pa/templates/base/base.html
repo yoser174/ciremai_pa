@@ -80,7 +80,7 @@
             </div>
             {% if user.is_authenticated %}
             <div class="top-menu nav pull-right" style="margin-top: 12px;">
-                 <li><a href="/logout/"><i class="fa fa-sign-out"></i>Logout</a></li>
+                 <li><a href="/pa/logout/"><i class="fa fa-sign-out"></i>Logout</a></li>
             </div>
             {% endif %}
         </header>
@@ -123,22 +123,22 @@
                   {% if user.is_authenticated %}
                   
                   <li class="mt">
-                      <a {% if request.path == '/dashboard/' %} class="active"{% endif %} href="/dashboard/">
+                      <a {% if request.path == '/pa/dashboard/' %} class="active"{% endif %} href="/pa/dashboard/">
                           <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
                   </li>
                   
                   <li class="sub-menu">
-                      <a {% if request.path == '/orders/' or request.path == '/patients/' %} class="active"{% endif %} href="javascript:;" >
+                      <a {% if request.path == '/pa/orders/' or request.path == '/pa/patients/' %} class="active"{% endif %} href="javascript:;" >
                           <i class="fa fa-list"></i>
                           <span>Routine task</span>
                       </a>
                       <ul class="sub">
-                          {% if perms.pa.view_orders %} <li {% if request.path == '/orders/' %} class="active"{% endif %} ><a href="/orders/">Orders</a></li>{% endif %}
+                          {% if perms.pa.view_orders %} <li {% if request.path == '/pa/orders/' %} class="active"{% endif %} ><a href="/pa/orders/">Orders</a></li>{% endif %}
                       </ul>
                       <ul class="sub">
-                          {% if perms.pa.view_orders %} <li {% if request.path == '/patients/'%} class="active"{% endif %} ><a href="/patients/">Patients</a></li>{% endif %}
+                          {% if perms.pa.view_orders %} <li {% if request.path == '/pa/patients/'%} class="active"{% endif %} ><a href="/pa/patients/">Patients</a></li>{% endif %}
                       </ul>
                   </li>
                   

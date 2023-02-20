@@ -9,7 +9,8 @@ class JasperServer(object):
     def get_token(self):
         username = settings.JASPER_USER
         password = settings.JASPER_PASS
-        token = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
+        #token = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
+        token = base64.encodestring(('%s:%s' % (username,password)).encode()).decode().strip()
         return token
     
     def get_report_pa(self,order_id):
@@ -30,8 +31,9 @@ class JasperServer(object):
         </reportExecutionRequest>
         """.format(order_id=order_id)
         
-        #print data
+        print(data)
         token = self.get_token()
+        print(token)
         response = requests.post(url=settings.JASPER_REST+"reportExecutions",
                          headers={
                              "Authorization": "Basic " + token,
@@ -40,7 +42,7 @@ class JasperServer(object):
                          },
                          data=data)
         data = response.json()
-        #print data
+        print(data)
         try:
             request_id = data.get("requestId")
             export_id = data.get("exports")[0].get("id")

@@ -22,7 +22,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
-    'D:\\CIREMAI\\ciremai_pa\\media\\static',
+    'D:\\DEV\\ciremai_pa\\ciremai_pa\\static',
 ]
 
 
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     #
     'crispy_forms',
     'datetimewidget',
@@ -168,3 +169,11 @@ CKEDITOR_CONFIGS = {
 }
 
 LOGIN_URL_BILLING = "/pa/login/"
+
+# JASPER SERVER
+JASPER_USER = 'jasperadmin'
+JASPER_PASS = 'jasperadmin'
+JASPER_REST = 'http://147.139.194.22:8080/jasperserver/rest_v2/' # dengan / dibelakang
+
+MEDIA_ROOT = 'D:\\DEV\\ciremai_pa\\ciremai_pa\\media'
+MEDIA_URL = '/media/'

@@ -179,7 +179,7 @@ def OrderPathologyPrint(request,pk):
     pa = models.OrderPathology.objects.get(order=order)
 
     parameters ={'ORDER_ID': pk}
-    output = settings.MEDIA_ROOT+'\\report\\PA_'+str(order.patient.patient_id)+'_'+str(order.number)+'.pdf'
+    output = settings.MEDIA_ROOT+'/report/PA_'+str(order.patient.patient_id)+'_'+str(order.number)+'.pdf'
 
     
     
@@ -193,7 +193,7 @@ def OrderPathologyPrint(request,pk):
         fd.close()
 
         try:
-            output_report_his = settings.REPORT_ROOT+'\\'+str(order.origin.ext_code)+'\\PA'+str(order.origin.ext_code)+'_'+str(order.patient.patient_id)+'_'+str(order.sample_taken).replace('-','')+'_'+str(order.number)+'.pdf'
+            output_report_his = settings.REPORT_ROOT+'/'+str(order.origin.ext_code)+'/PA'+str(order.origin.ext_code)+'_'+str(order.patient.patient_id)+'_'+str(order.sample_taken).replace('-','')+'_'+str(order.number)+'.pdf'
             fd = open (output_report_his, 'wb')
             fd.write(content)
             fd.close()
@@ -216,7 +216,7 @@ def OrderPathologyPrintEN(request,pk):
     pa = models.OrderPathology.objects.get(order=order)
 
     parameters ={'ORDER_ID': pk}
-    output = settings.MEDIA_ROOT+'\\report\\PA_'+str(order.patient.patient_id)+'_'+str(order.number)+'_EN.pdf'
+    output = settings.MEDIA_ROOT+'/report/PA_'+str(order.patient.patient_id)+'_'+str(order.number)+'_EN.pdf'
     
     res_rep = report.JasperServer()
     
@@ -228,7 +228,7 @@ def OrderPathologyPrintEN(request,pk):
         fd.close()
 
         try:
-            output_report_his = settings.REPORT_ROOT+'\\'+str(order.origin.ext_code)+'\\PA'+str(order.origin.ext_code)+'_'+str(order.patient.patient_id)+'_'+str(order.sample_taken).replace('-','')+'_'+str(order.number)+'.pdf'
+            output_report_his = settings.REPORT_ROOT+'/'+str(order.origin.ext_code)+'/PA'+str(order.origin.ext_code)+'_'+str(order.patient.patient_id)+'_'+str(order.sample_taken).replace('-','')+'_'+str(order.number)+'.pdf'
             fd = open (output_report_his, 'wb')
             fd.write(content)
             fd.close()
@@ -266,7 +266,7 @@ def OrderCythologyPrint(request,pk):
     
     #ts = datetime.today().strftime('%Y%m%d%H%M%S')
     parameters ={'ORDER_ID': pk}
-    output = settings.MEDIA_ROOT+'\\report\\CA_'+str(order.patient.patient_id)+'_'+str(order.number)+'.pdf'
+    output = settings.MEDIA_ROOT+'/report/CA_'+str(order.patient.patient_id)+'_'+str(order.number)+'.pdf'
     
     res_rep = report.JasperServer()
     
@@ -278,7 +278,7 @@ def OrderCythologyPrint(request,pk):
         fd.close()
 
         try:
-            output_report_his = settings.REPORT_ROOT+'\\'+str(order.origin.ext_code)+'\\CA'+str(order.origin.ext_code)+'_'+str(order.patient.patient_id)+'_'+str(order.sample_taken).replace('-','')+'_'+str(order.number)+'.pdf'
+            output_report_his = settings.REPORT_ROOT+'/'+str(order.origin.ext_code)+'/CA'+str(order.origin.ext_code)+'_'+str(order.patient.patient_id)+'_'+str(order.sample_taken).replace('-','')+'_'+str(order.number)+'.pdf'
             fd = open (output_report_his, 'wb')
             fd.write(content)
             fd.close()
@@ -302,7 +302,7 @@ def OrderCythologyPrintEN(request,pk):
     
     #ts = datetime.today().strftime('%Y%m%d%H%M%S')
     parameters ={'ORDER_ID': pk}
-    output = settings.MEDIA_ROOT+'\\report\\CA_'+str(order.patient.patient_id)+'_'+str(order.number)+'_EN.pdf'
+    output = settings.MEDIA_ROOT+'/report/CA_'+str(order.patient.patient_id)+'_'+str(order.number)+'_EN.pdf'
     
     res_rep = report.JasperServer()
     
@@ -314,7 +314,7 @@ def OrderCythologyPrintEN(request,pk):
         fd.close()
 
         try:
-            output_report_his = settings.REPORT_ROOT+'\\'+str(order.origin.ext_code)+'\\CA'+str(order.origin.ext_code)+'_'+str(order.patient.patient_id)+'_'+str(order.sample_taken).replace('-','')+'_'+str(order.number)+'.pdf'
+            output_report_his = settings.REPORT_ROOT+'/'+str(order.origin.ext_code)+'/CA'+str(order.origin.ext_code)+'_'+str(order.patient.patient_id)+'_'+str(order.sample_taken).replace('-','')+'_'+str(order.number)+'.pdf'
             fd = open (output_report_his, 'wb')
             fd.write(content)
             fd.close()
